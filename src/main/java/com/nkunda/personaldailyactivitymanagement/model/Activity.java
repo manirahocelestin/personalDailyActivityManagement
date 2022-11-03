@@ -29,8 +29,8 @@ public class Activity {
     @JoinColumn(name = "userId")
     private User user;
 
-//    public Activity() {
-//    }
+    public Activity() {
+    }
 
     public Activity(LocalDate date, ActivityType nameOfActivity, String other, String address, double amount, String comment, User user) {
         this.date = date;

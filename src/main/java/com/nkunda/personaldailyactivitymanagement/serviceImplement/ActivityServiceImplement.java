@@ -1,5 +1,7 @@
 package com.nkunda.personaldailyactivitymanagement.serviceImplement;
 
+
+
 import com.nkunda.personaldailyactivitymanagement.model.Activity;
 import com.nkunda.personaldailyactivitymanagement.model.ActivityType;
 import com.nkunda.personaldailyactivitymanagement.repository.ActivityRepo;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class ActivityServiceImplement implements ActivityService {
 
-    private Activity activity;
+
     @Autowired
     private ActivityRepo activityRepo;
 
@@ -26,19 +28,14 @@ public class ActivityServiceImplement implements ActivityService {
             return activityRepo.save(activity);
 
         }catch (Exception e){
-            throw new RuntimeException("Please check your process");
+            throw new RuntimeException(e);
         }
 
     }
 
     @Override
     public List<Activity> findAllActivity() {
-        try{
-            return activityRepo.findAll();
-        }catch (Exception e){
-            throw  new RuntimeException("I'm sorry data not found please check your table");
-        }
-
+       return activityRepo.findAll();
     }
 
     @Override
@@ -46,7 +43,8 @@ public class ActivityServiceImplement implements ActivityService {
         try{
             return activityRepo.findByNameOfActivity(activityType);
         }catch (Exception e){
-            throw new RuntimeException("I'm sorry this name not found on the system");
+            throw new RuntimeException(e);
+           // throw new RuntimeException("I'm sorry this name not found on the system");
         }
 
     }
@@ -82,5 +80,10 @@ public class ActivityServiceImplement implements ActivityService {
             throw  new RuntimeException("Please verified your Id number before you delete!!");
         }
 
+    }
+
+    @Override
+    public Activity findById(Long id) {
+        return activityRepo.findById(id).get();
     }
 }

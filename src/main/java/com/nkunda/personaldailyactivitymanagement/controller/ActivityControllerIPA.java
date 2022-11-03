@@ -15,21 +15,39 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("allMyProjectIPA")
+
 public class ActivityControllerIPA {
+    @GetMapping("index")
+    public ResponseEntity<?> getIndex(){
+        return new ResponseEntity<>("hello world",HttpStatus.OK);
+    }
+
 
     @Autowired
-    private ActivityRepo activityRepo;
     private ActivityService activityService;
 //   public ResponseEntity<List<Student>> getAllStudents() {
 //        List<Student> students = studentService.getAllStudents();
 //        return new ResponseEntity<>(students, HttpStatus.OK);
 
-    @GetMapping("/All")
+       @GetMapping(value = "all",produces = "application/json")
     ResponseEntity<List<Activity>> getAllActivities(){
-       List<Activity> activities = activityService.findAllActivity();
+      List<Activity> activities = activityService.findAllActivity();
        return new ResponseEntity<>(activities,HttpStatus.OK);
     }
+//public ResponseEntity<?> getActivityId()
+
+    }
+    /*
+    @GetMapping("/findbyid/{id}")
+    public Activity geActivityId(@PathVariable long id) {
+        return bookServiceImpl.findactivityByID(id);
+    }
+     */
+//    @PostMapping(value = "/addActivity",consumes = "application/json",produces = "application/json")
+//    public ResponseEntity<?> create(@RequestBody Activity activity){
+//        return new ResponseEntity<>(activityRepo.save(activity),HttpStatus.OK);
+//
+//    }
     }
 
 

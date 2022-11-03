@@ -14,6 +14,7 @@ public interface ActivityService {
     Activity findByDate(LocalDate date, Pageable pageable);
     Activity updateActivity (Activity activity);
     void deleteActivityById(Long id);
+    Activity findById (Long id);
 
 
 }
